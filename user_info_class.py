@@ -6,11 +6,11 @@ class User:
         self._borrowed_books = borrowed_books
         
     #getter for user_name
-    def get_user_name(self):
-        return self._user_name
+    def get__user_name(self):
+        return self.__user_name
 
     #getter for id   
-    def get_user_id(self):
+    def get__user_id(self):
         return self.__user_id 
     
     #getter for borrowed_books
@@ -19,11 +19,11 @@ class User:
     
     
     # setter for a new user
-    def set_user_name(self, new_user_name):
+    def set__user_name(self, new_user_name):
         self.__user_name = new_user_name
     
     # setter for new_user_id
-    def set_user_id(self, new_user_id):
+    def set__user_id(self, new_user_id):
         self.__user_id = new_user_id
         print(self.__user_id, )
         
