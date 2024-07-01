@@ -78,7 +78,7 @@
 #         for item in zip(self.title, self.author, self.pub_date, self.availability): #zip function to combine all the lists into a tuple
 #             print(item) 
             
-class Books:
+class Book_Operations:
         def __init__(self):
             self.books = {}
             

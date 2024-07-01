@@ -1,12 +1,12 @@
 
 #the list of choices available to the user
 main_menu = ["Book Operations", "User Operations", "Author Operations", "Quit"]
-book_operations = ["Add a new book", "Borrow a book", "Return a book", "Search for a book"]
-user_operations = ["Add a new user", "View user details", " Display all users"]
-author_operations = ["Add a new author", "View author details", "Display all authors"]
+book_operations_menu = ["Add a new book", "Borrow a book", "Return a book", "Search for a book"]
+user_operations_menu = ["Add a new user", "View user details", " Display all users"]   
+author_operations_menu = ["Add a new author", "View author details", "Display all authors"]
 
 
-#greeting the user and displaying the menu
+# greeting the user and displaying the menu
 def user_greet():
     print()
     from datetime import datetime
@@ -34,51 +34,21 @@ class UserInteraction:
 
     #Displaying the book operations menu
     def display_book_operations(self):
-        numbered_book_operations = [(i + 1, menu) for i, menu in enumerate(book_operations)]
+        numbered_book_operations = [(i + 1, menu) for i, menu in enumerate(book_operations_menu)]
         for i, menu in numbered_book_operations:
             print(i,menu)
         return "Please make your choice:  "    
 
     #Displaying the user operations menu
     def display_user_operations(self):
-        numbered_user_operations = [(i + 1, menu) for i, menu in enumerate(user_operations)]
+        numbered_user_operations = [(i + 1, menu) for i, menu in enumerate(user_operations_menu)]
         for i, menu in numbered_user_operations:
             print(i,menu)
         return "Please make your choice:  "    
 
     #Displaying the author operations menu
     def display_author_operations(self):
-        numbered_author_operations = [(i + 1, menu) for i, menu in enumerate(author_operations)]
+        numbered_author_operations = [(i + 1, menu) for i, menu in enumerate(author_operations_menu)]
         for i, menu in numbered_author_operations:
             print(i,menu)
         return "Please make your choice:  "    
-
-    #Displaying the book operations menu
-    def display_book_operations(self):
-        numbered_book_operations = [(i + 1, menu) for i, menu in enumerate(book_operations)]
-        for i, menu in numbered_book_operations:
-            print(i,menu)
-        return "Welcome to Book operations. Please make your choice:  "    
-
-    #Displaying the user operations menu
-    def display_user_operations(self):
-        numbered_user_operations = [(i + 1, menu) for i, menu in enumerate(user_operations)]
-        for i, menu in numbered_user_operations:
-            print(i,menu)
-        return "Welcome to User Operations. Please make your choice:  "    
-
-    #Displaying the author operations menu
-    def display_author_operations(self):
-        numbered_author_operations = [(i + 1, menu) for i, menu in enumerate(author_operations)]
-        for i, menu in numbered_author_operations:
-            print(i,menu)
-        return "Welcome to Author Operations. Please make your choice:  "    
-
-    #Displaying the book operations menu
-    def display_book_operations(self):
-        numbered_book_operations = [(i + 1, menu) for i, menu in enumerate(book_operations)]
-        for i, menu in numbered_book_operations:
-            print(i,menu)
-        return "Welcome to Book Operations. Please make your choice:  "   
-
-    
