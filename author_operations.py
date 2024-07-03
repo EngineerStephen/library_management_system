@@ -4,8 +4,33 @@ author_operation_menu = ["Add a new author", "View author details", "Display all
 
 
 class Author_Operations: 
-    def __init__(self):
+    def __init__(self, author_name, author_bio, books):
+        self.__author_name = author_name
+        self.__author_bio = author_bio
+        self.__books = books
         self.author = {}
+        
+        
+    #getter for author_name 
+    def get_author_name(self):
+        return self.__author_name
+    
+    #getter for author_bio  
+    def get_author_bio(self):
+        return self.__author_bio
+    
+    #getter for books
+    def get_books(self):
+        return self.__books
+    
+    #setter for author_name
+    def set_author_name(self, author_name):
+        self.__author_name = author_name
+        
+    #setter for author_bio
+    def set_author_bio(self, author_bio):
+        self.__author_bio = author_bio
+           
 
     #Displaying the menu
     def display_author_operations(self):
@@ -15,48 +40,43 @@ class Author_Operations:
         return "Welcome to Author Operations. Please make your choice:  "
     
     
-    def add_new_author(self):
+    def add_new_author(authors):
+        
+        new_author_name = input("Please enter the name of the author you would like to add: ")      
+        new_author_bio = input("Please enter the biography of the author you would like to add: ")
+        new_author_books = input("Please enter the books of the author you would like to add: ")      
+        
+        author_detail = Author_Operations(new_author_name, new_author_bio, new_author_books)
+        authors.update({new_author_name: author_detail})
+        print(f"Author: {new_author_name} with bio has been added to the library")
+        
+    
+    #function to view specific author's details   
+    def view_author_details(authors):
+        
+        author_search = input("Please, enter the name of the author you would like to view: ")
+        if author_search in authors:
+            print(f"{author_search} is available in the library")   
+            specified_author = authors[author_search]
+            print(f"Author Name: {specified_author.get_author_name()}")
+            print(f"Author Bio: {specified_author.get_author_bio()}")
+            print(f"Author Books: {specified_author.get_books()}")
+        else:
+            print(f"{author_search} is not available in the library")
 
-        ask_for_author = input("Would you like to add a new author? (yes/no): ")
-        if ask_for_author!= "yes":
-            print("Thank you for using the Library's Book Management System. Goodbye!")
-            return   
-            
-        else: 
-            new_author = input("Please enter the name of the author you would like to add: ")
-            new_author_biography = input("Please enter the biography of the author you would like to add: ")
-            new_author_detail = {new_author: new_author_biography}
-            self.author.update(new_author_detail)
-            print(f"{new_author} has been added to the library")
-            print(new_author_detail)
-            
-            
-     #function to view specific author's details       
-    def view_author_details(self):
-        while True:
-            ask_to_view = input("Would you like to view an author detail? (yes/no): ")
-            if ask_to_view != "yes":
-                print("Thank you for using the Library's Book Management System. Goodbye!")
-                return   
-            else:
-                my_author_name = input("Please enter the name of the author you would like to view: ")
-                
-                if my_author_name in self.author:
-                    print(f"{my_author_name} is available in the library")
-                    for name, bio in self.author.items(my_author_name):
-                        print(name, bio)
-                        
-                else:
-                    print(f"{my_author_name} is not available in the library")
-                    continue
 
     #function to view all author details
-    def all_authors(self):
-        if self.author == {}:
+    def all_authors(authors):
+        if not authors:
             print("There are no authors in the library")
 
         else:
             print("The following are the details of all the authors in the library: ") 
-            for author, bio in self.author.items():
-                print(author, bio)
+            for author_name, author_detail in authors.items():
+                print(f"Author Name: {author_detail.get_author_name()}")
+                print(f"Author Bio: {author_detail.get_author_bio()}")
+                print(f"Author Books: {author_detail.get_books()}")
+                
+                
+                
             

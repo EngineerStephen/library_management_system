@@ -4,10 +4,12 @@ from user_operations import User_Operations    #importing the User_Operations cl
 from author_operations import Author_Operations   #importing the Author_Operations class from the author_operations module
 
 
-#creating an empty dictionary to store the books   #creating an empty dictionary to store the borrowed books
+#initializing the dictionaries
 library = {}
 borrowed_books = {}
 users ={}
+authors ={}
+
 
 def main():
     
@@ -21,26 +23,18 @@ def main():
         #book operations
         if user_menu_choice == "1":
             user_interaction.display_book_operations()
-            print()
-            # print("here are all your books: ", library)
-            # print("here are all your borrowed books: ", borrowed_books) 
-            print()
-            
-            user_book_operation_choice = input("What do you want to do here? ") #getting user input for the book operation choice
+            print()    
+            user_book_operation_choice = input("Welcome to Book Operations. Please make your choice: ") #getting user input for the book operation choice
             print()
            #creating an instance of the Book class
             if user_book_operation_choice == "1":
                 Book_Operations.add_new_book(library)
-
             elif user_book_operation_choice == "2":
-                Book_Operations.borrow_book(library)
-                
+                Book_Operations.borrow_book(library)               
             elif user_book_operation_choice == "3":
-                Book_Operations.return_book(library)
-            
+                Book_Operations.return_book(library)           
             elif user_book_operation_choice == "4":
-                Book_Operations.search_book(library)
-            
+                Book_Operations.search_book(library )         
             else:
                 print("You have not made a valid selection, please try again.")
                 continue
@@ -51,22 +45,34 @@ def main():
             print()
             User_Operations.display_user_operations(users)
             print()
-            user_operation_choice = input("What do you want to do here: ") #getting user input for the user operation choice
+            user_operation_choice = input("Welcome to User Operations. Please make your choice:") #getting user input for the user operation choice
             print()
             if user_operation_choice == "1":
-                User_Operations.add_new_user(users)
-                
+                User_Operations.add_new_user(users)               
             elif user_operation_choice == "2":
                 User_Operations.view_user_details(users)
-            
-                
             elif user_operation_choice == "3":
                 User_Operations.all_users(users)
-
             else:
                 print("You have not made a valid selection, please try again.")
                 continue
-            
+        
+        #author_operations
+        elif user_menu_choice == "3":
+            print()
+            Author_Operations.display_author_operations(authors)
+            print()
+            user_author_operation_choice = input("Welcome to Author Operations. Please make your choice: ") #getting user input for the author operation choice
+            print()
+            if user_author_operation_choice == "1":
+                Author_Operations.add_new_author(authors)
+            elif user_author_operation_choice == "2":
+                Author_Operations.view_author_details(authors)
+            elif user_author_operation_choice == "3":
+                Author_Operations.all_authors(authors)
+            else:
+                print("You have not made a valid selection, please try again.")
+                continue
 
 
         elif user_menu_choice == "4":
@@ -80,31 +86,3 @@ def main():
 
 main()  
 
-
-
-
-
-      
-        # #author operations
-        # elif user_menu_choice == "3":
-        #     author_operation = Author_Operations()
-            
-        #     user_interaction.display_author_operations()
-        #     user_author_choice = input("What do you want to do here: ")
-            
-        #     if user_author_choice == "1":
-        #         author_operation.add_new_author()
-                
-        #     elif user_author_choice == "2":
-        #         author_operation.view_author_details()
-                
-        #     elif user_author_choice == "3":
-        #         author_operation.all_authors()
-
-        #     else:
-        #         print("You have not made a valid selection, please try again.")
-        #         continue
-        #     print() 
-            
-   
-    
