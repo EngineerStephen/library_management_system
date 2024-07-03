@@ -1,173 +1,133 @@
-# class Books: 
-#     def __init__(self, title, author, genre, pub_date, availability):
-#         self.title = title
-#         self.author = author
-#         self.genre = genre
-#         self.pub_date = pub_date  
-#         self.availability = availability
-        
-#         #initializing the list of books
-#         self.books = []
-        
-#     #getter for title   
-#     def get_title(self):
-#         return self.title()
-    
-#     #getter for author   
-#     def get_author(self):
-#         return self.author()     
-        
-#     #getter for genre  
-#     def get_genre(self):
-#         return self.genre() 
-        
-#             #getter for title   
-#     def get_availability(self):
-#         return self.availability()
-        
-    
-#     #function to add a new book       
-#     def add_new_book(self,title):
-#         ask_for_book = input("Would you like to add a new book? (yes/no): ")
-#         if ask_for_book != "yes":
-#             print("Thank you for using the Library's Book Management System. Goodbye!")
-#             return         
-#         else: 
-#             new_book_title = input("Please enter the title of the book you would like to add: ")
-#             self.books = self.books.append(new_book_title)
-#             print(f"{new_book_title} has been added to the library")
-            
-            
-            
-#     #function to borrow a book
-#     def borrow_book(self, title):
-#         ask_for_borrow = input("Would you like to borrow a book? (yes/no): ")
-#         if ask_for_borrow != "yes":
-#             print("Thank you for using the Library's Book Management System. Goodbye!")
-#             return         
-#         else: 
-#             book_to_borrow = input("Please enter the title of the book you would like to borrow: ")
-#             self.title = self.title.remove(book_to_borrow)
-#             print(f"{book_to_borrow} has been borrowed from the library")
-        
-        
-#     #function to return a book
-#     def return_book(self, title):
-#         ask_for_return = input("Would you like to return a book? (yes/no): ")
-#         if ask_for_return != "yes":
-#             print("Thank you for using the Library's Book Management System. Goodbye!")
-#             return         
-#         else: 
-#             book_to_return = input("Please enter the title of the book you would like to return: ")
-#             self.title = self.title.append(book_to_return)
-#             print(f"{book_to_return} has been returned to the library") 
-            
-            
-#     #function to search for a book
-#     def search_book(self, title):
-#         ask_to_search = input("What book would you like to search for? ") 
-#         if ask_to_search in self.title:
-#             print(f"{ask_to_search} is available in the library")
 
-#         else:
-#             print(f"{ask_to_search} is not available in the library")
-            
-
-#     #function to display list of all books 
-#     def display_books(self, title): 
-#         for item in zip(self.title, self.author, self.pub_date, self.availability): #zip function to combine all the lists into a tuple
-#             print(item) 
-            
 class Book_Operations:
-        def __init__(self):
-            self.books = {}
+    
+    def __init__(self, title, author, bio, genre, pub_date):
+        self.__title = title
+        self.__author = author
+        self.__bio    = bio
+        self.__genre = genre
+        self.__pub_date = pub_date
+        self.__is_available = True
+
+        self.books = []
+        
+    # Getter and Setters
+    def get_title(self):
+        return self.__title
+
+    # getter for __is_available
+    def get_availability(self):
+        return self.__is_available
+
+    # setter for availability
+    def set_availability(self):
+        # if self.__is_available is True we set it to false
+        if self.get_availability():
+            self.__is_available = False
+        # else self.__is_available is False we set it to true
+        else:
+            self.__is_available = True
+
+    # getter for genre
+    def get_genre(self):
+        return self.__genre
+
+    
+    
+    
+    def add_new_book(library):
+        while True:
+            title = input("Please enter the title of the book you would like to add: ")
+            author = input("Please enter the author of the book you would like to add: ")
+            bio = input("Please enter the biography of the bio of the book you would like to add: ")
+            genre = input("Please enter the genre of the book you would like to add: ")
+            pub_date = input("Please enter the publication date of the book you would like to add: ")
+
+            book_detail = Book_Operations(title, author, bio, genre, pub_date)
+            library[title] = book_detail
+            print()
+            print(f"{title} by {author} in {genre} genre published {pub_date} has been added to the library.  ")
+            print()
+            add_more = input("Would you like to add another book? (yes/no): ")
+            if add_more.lower() == "yes":
+                continue
+            elif add_more.lower() == "no":
+                print()
+                print("Thank you for using the Library's Book Management System. Here are your books: ")
+                
+                if library == {}:
+                    print("There are no books in the library")
+                else:
+                    for key, value in library:
+                        print(key, value) 
+                break
+            else:
+                print("Invalid input. Please enter yes or no")
+                continue
             
-        def add_new_book(self):
-            while True:
-                ask_for_book = input("Would you like to add a new book? (yes/no): ")
-                if ask_for_book == "yes":
-                    new_book_title = input("Please enter the title of the book you would like to add: ")
-                    new_book_author = input("Please enter the author of the book you would like to add: ")
-                    new_book_bio = input("Please enter the biography of the author of the book you would like to add: ")    
-                    new_book_genre = input("Please enter the genre of the book you would like to add: ")    
-                    new_book_pub_date = input("Please enter the publication date of the book you would like to add: ")
-                    
-                    book_detail = {
-                        {"author": new_book_author},
-                        {"biography": new_book_bio},
-                        {"genre": new_book_genre},
-                        {"publication date": new_book_pub_date}
-                        }
-                
-                    
-                    self.books.append(book_detail)
-                    
-                    print(f"{new_book_title} has been added to the library.  ")
-                    
-                    
-                elif ask_for_book == "no": 
-                    print("Thank you for using the Library's Book Management System. Goodbye!")
-                    return   
-                
-                else:
-                    print("Invalid input. Please enter yes or no")
+
+
+    # method for borrowing a book
+    def borrow_book(self):
+        # if its available then we set use the setter to set it to the opposite which is False
+        if self.get_availability():
+            self.set_availability()
+            return True #returns True that we are able to borrow the book
+        return False
+
+
+    def return_book(self):
+        self.set_availability() #sets the availability back to true if its False
+        
+    
+    def borrow_book(library):
+        title = input("Please enter the title of the book you would like to borrow: ")
+        if title in library:
+            if title in library and library[title].borrow_book():#using the borrowed book method we created on this func 
+                print(f"{title} has been borrowed")
+                borrowed_books[title] = library[title]  
+            else:
+                print(f"Sorry, {title} is currently not available")
+        else:
+            print(f"{title} is not available in our library")
+
+    def return_book(library):
+        while True:
+            try:
+                title = input("Please enter the title of the book you would like to return: ")
+                if library[title].get_availability():
+                    print(f"{title} is already in the library. Please check the book title and try again")
                     continue
-                break
-            
-            return self.books
-        
-        def borrow_book(self):
-            print("Please note that all entered book titles are case sensitive")
-            while True:
-                ask_for_borrow = input("Would you like to borrow a book? (yes/no): ")
-                if ask_for_borrow == "yes":
-                    book_to_borrow = input("Please enter the title of the book you would like to borrow: ")
-                    if book_to_borrow in self.books:
-                        print(f"{book_to_borrow} has been borrowed from the library")
-                    else:
-                        print(f"{book_to_borrow} is not available in the library")
-                        continue
-                elif ask_for_borrow == "no": 
-                    print("Thank you for using the Library's Book Management System. Goodbye!")
-                    return   
-                
+                elif library[title].get_availability() == False and title in borrowed_books:    
+                        print("Thank you for returning the book")
+                        library[title].return_book()
+                        borrowed_books.pop(title)
+                        break
                 else:
-                    print("Invalid input. Please enter yes or no")
+                    print(f"{title} is not available in our library. Please check the book title and try again")
                     continue
-                break
-            return self.books
-        
-        def return_book(self):
-            print("Please note that all entered book titles are case sensitive")
-            while True:
-                ask_for_return = input("Would you like to return a book? (yes/no): ")
-                if ask_for_return == "yes":
-                    book_to_return = input("Please enter the title of the book you would like to return: ")
-                    if book_to_return not in self.books:
-                        print(f"{book_to_return} has been returned to the library")
-                    else:
-                        print(f"{book_to_return} is not available in the library")
-                elif ask_for_return == "no": 
-                    print("Thank you for using the Library's Book Management System. Goodbye!")
-                    return   
-                
-                else:
-                    print("Invalid input. Please enter yes or no")
-                    continue
-                break
-            return self.books
-        
-        def search_book(self):
-            print("Please note that all entered book titles are case sensitive")
-            while True:
-                ask_to_search = input("What book would you like to search for? ") 
-                if ask_to_search in self.books:
-                    print(f"{ask_to_search} has been found in the library,")
-                else:
-                    print(f"{ask_to_search} is not available in the library")
-                break
-            return self.books
-        
-        def display_books(self): 
-            for key,value in self.books:
-                print(key, value) 
+            except KeyError:
+                print(f"{title} is not available in our library. Please check the book title and try again")
+            break
+
+    
+    def search_book(library):
+        while True:
+            title = input("Please enter the title of the book you would like to search: ")
+            library
+            if title in library:
+                book = library[title]
+                print("Book found, here is some info: ")
+                print(book.get__title())
+                print(book.get__author())
+                print(book.get__genre())
+                print(book.get__bio())
+                print(book.get__pub_date())
+                print(book.get__availability())     
+            else:
+                print(f"{title} is not available in the library")
+            break
+    
+    # def display_books(library):
+    #     for book in library.values():
+    #     print(f"{book.get_title()} by {book.get_author()}: {book.get_genre()}: {book.get_availability()}")

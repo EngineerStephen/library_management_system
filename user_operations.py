@@ -1,14 +1,39 @@
 user_operation_menu = ["Add a new user", "View user details", " Display all users"]   
- 
+
 class User_Operations: 
-    def __init__(self):
-        # self.__user_name = user_name
-        # self.__user_id = user_id 
-        # self._borrowed_books = borrowed_books
-        self.user = {}
+    def __init__(self, user_name, user_id, borrowed_books):
+        self.__user_name = user_name
+        self.__user_id = user_id 
+        self.__borrowed_books = borrowed_books
+    
+    #getter for user_name  
+    def get_user_name(self):
+        return self.__user_name
+    
+    #getter for user_id
+    def get_user_id(self):
+        return self.__user_id
+    
+    #getter for borrowed_books  
+    def get_borrowed_books(self):
+        return self.__borrowed_books    
+    
+    #setter for user_name   
+    def set_user_name(self, user_name):
+        self.__user_name = user_name
+
+    #setter for user_id
+    def set_user_id(self, user_id): 
+        self.__user_id = user_id    
+        
+    #setter for borrowed_books
+    def set_borrowed_books(self, borrowed_books):
+        self.__borrowed_books = borrowed_books  
+
+    
         
     #Displaying the menu 
-    def display_user_operations(self):
+    def display_user_operations(users):
         numbered_operations = [(i + 1, item ) for i, item in enumerate(user_operation_menu)]
         for i, item in numbered_operations:
             print(i,item)
@@ -16,20 +41,16 @@ class User_Operations:
 
         
     #function to add a new user
-    def add_new_user(self):
-        ask_for_user = input("Would you like to add a new user? (yes/no): ")
-        if ask_for_user != "yes":
-            print("Thank you for using the Library's Book Management System. Goodbye!")
-            return   
-            
-        else: 
+
+    def add_new_user(users): 
             new_user_name = input("Please enter the name of the user you would like to add: ")
             new_user_id = input("Please enter the id of the user you would like to add: ")
-            new_user_detail = {new_user_name: new_user_id}
-            self.user.update(new_user_detail)
-            print(f"{new_user_name} has been added to the library")
-            print(new_user_detail)
-
+            new_user_borrowed = input("Please enter the borrowed books of the user you would like to add: ")    
+            
+            user_detail = User_Operations(new_user_name, new_user_id, new_user_borrowed)
+            users[new_user_name] = user_detail
+            print(f"User: {new_user_name}, ID: {new_user_id}, has been added to the library")
+            
     
     #viewing user's details
     def view_user_details(self):
