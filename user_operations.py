@@ -6,6 +6,8 @@ class User_Operations:
         self.__user_id = user_id 
         self.__borrowed_books = borrowed_books
     
+        self.users={}
+    
     #getter for user_name  
     def get_user_name(self):
         return self.__user_name
@@ -43,44 +45,41 @@ class User_Operations:
     #function to add a new user
 
     def add_new_user(users): 
-            new_user_name = input("Please enter the name of the user you would like to add: ")
-            new_user_id = input("Please enter the id of the user you would like to add: ")
-            new_user_borrowed = input("Please enter the borrowed books of the user you would like to add: ")    
-            
-            user_detail = User_Operations(new_user_name, new_user_id, new_user_borrowed)
-            users[new_user_name] = user_detail
-            print(f"User: {new_user_name}, ID: {new_user_id}, has been added to the library")
-            
     
+        new_user_name = input("Please enter the name of the user you would like to add: ")
+        new_user_id = input("Please enter the id of the user you would like to add: ")
+        new_user_borrowed = input("Please enter the borrowed books of the user you would like to add: ")    
+        
+        user_detail = User_Operations(new_user_name, new_user_id, new_user_borrowed)
+        users.update({new_user_name: user_detail}) 
+        print(f"User: {new_user_name} with ID: {new_user_id} has been added to the library")
+
     #viewing user's details
-    def view_user_details(self):
-        while True:
-            ask_to_view = input("Would you like to view a user detail? (yes/no): ")
-            if ask_to_view != "yes":
-                print("Thank you for using the Library's Book Management System. Goodbye!")
-                return   
+    def view_user_details(users):
+        
+            user_search = input("Please, enter the name of the user you would like to view: ")
+            if user_search in users:
+                print(f"{user_search} is available in the library")
+                specified_user = users[user_search]
+                print(f"User Name: {specified_user.get_user_name()}")
+                print(f"User ID: {specified_user.get_user_id()}")
+                print(f"Borrowed Books: {specified_user.get_borrowed_books()}")
             else:
-                my_user_name = input("Please enter the name of the user you would like to view: ")
-                
-                if my_user_name in self.user:
-                    print(f"{my_user_name} is available in the library")
-                    for name, id in self.user.items(my_user_name):
-                        print(name, id)
-                        
-                else:
-                    print(f"{my_user_name} is not available in the library")
-                    continue    
-                
-                
-                
+                print(f"{user_search} is not available in the library")
+            
+
+            
+
             
     #function to view all user details
-    def all_users(self):
-        print("The following are the details of all the users in the library: ")
-        for user, id in self.user: #zip function to combine all the lists into a tuple
-            print(user, id) 
-            
-        if self.user == {}:
+    def all_users(users):
+        if not users:  # Check if users dictionary is empty
             print("There are no users in the library")
-            return
-            
+        else:
+            print("The following are the details of all the users in the library: ")
+            # user_detail = users
+            for user_name, user_detail in users.items():
+                print(f"User Name: {user_detail.get_user_name()}")
+                print(f"User ID: {user_detail.get_user_id()}")
+                print(f"Borrowed Books: {user_detail.get_borrowed_books()}")
+                print()

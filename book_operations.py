@@ -17,7 +17,10 @@ class Book_Operations:
 
     # getter for __is_available
     def get_availability(self):
-        return self.__is_available
+        if self.__is_available == True:
+            return "Available"
+        else:
+            return "Not Available"
 
     # setter for availability
     def set_availability(self):
@@ -32,6 +35,7 @@ class Book_Operations:
     def get_genre(self):
         return self.__genre
 
+
     
     
     
@@ -43,8 +47,7 @@ class Book_Operations:
             genre = input("Please enter the genre of the book you would like to add: ")
             pub_date = input("Please enter the publication date of the book you would like to add: ")
 
-            book_detail = Book_Operations(title, author, bio, genre, pub_date)
-            library[title] = book_detail
+            book_detail = title, author, bio, genre, pub_date
             print()
             print(f"{title} by {author} in {genre} genre published {pub_date} has been added to the library.  ")
             print()
@@ -55,10 +58,10 @@ class Book_Operations:
                 print()
                 print("Thank you for using the Library's Book Management System. Here are your books: ")
                 
-                if library == {}:
+                if library == []:
                     print("There are no books in the library")
                 else:
-                    for key, value in library:
+                    for key, value in library.items():#To iterate over key-value pairs (items) in a dictionary in Python, you should use .items()
                         print(key, value) 
                 break
             else:
@@ -83,11 +86,11 @@ class Book_Operations:
     def borrow_book(library):
         title = input("Please enter the title of the book you would like to borrow: ")
         if title in library:
-            if title in library and library[title].borrow_book():#using the borrowed book method we created on this func 
-                print(f"{title} has been borrowed")
-                borrowed_books[title] = library[title]  
-            else:
-                print(f"Sorry, {title} is currently not available")
+            library[title].borrow_book() #using the borrowed book method we created on this func 
+            print(f"{title} has been borrowed")
+            borrowed_books[title] = library[title]  
+            # else:
+            #     print(f"Sorry, {title} is currently not available")
         else:
             print(f"{title} is not available in our library")
 

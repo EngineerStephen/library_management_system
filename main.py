@@ -44,8 +44,8 @@ def main():
             else:
                 print("You have not made a valid selection, please try again.")
                 continue
-      
-          
+
+
         #user_operations
         elif user_menu_choice == "2":
             print()
@@ -60,14 +60,22 @@ def main():
                 User_Operations.view_user_details(users)
             
                 
-            # elif user_operation_choice == "3":
-            #     user_operation.all_users()
+            elif user_operation_choice == "3":
+                User_Operations.all_users(users)
 
-            # else:
-            #     print("You have not made a valid selection, please try again.")
-            #     continue
-            # print() 
+            else:
+                print("You have not made a valid selection, please try again.")
+                continue
+            
 
+
+        elif user_menu_choice == "4":
+            print("Thank you for using the Library's Book Management System. Goodbye!")
+            break
+        
+        else:
+            print("Invalid input. Please enter a number between 1 and 3 inclusive")
+            continue
 
 
 main()  
@@ -98,13 +106,5 @@ main()
         #         continue
         #     print() 
             
-        
-        # elif user_menu_choice == "4":
-        #     print("Thank you for using the Library's Book Management System. Goodbye!")
-        #     break
-        
-        # else:
-        #     print("Invalid input. Please enter a number between 1 and 3 inclusive")
-        #     continue
-        # break 
+   
     
